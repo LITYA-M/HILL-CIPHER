@@ -5,7 +5,8 @@ EX. NO: 3 AIM:
 
 IMPLEMENTATION OF HILL CIPHER
  
-## To write a C program to implement the hill cipher substitution techniques.
+## AIM
+To write a C program to implement the hill cipher substitution techniques.
 
 ## DESCRIPTION:
 
@@ -29,7 +30,53 @@ STEP-4: Multiply the two matrices to obtain the cipher text of length three.
 STEP-5: Combine all these groups to get the complete cipher text.
 
 ## PROGRAM 
+```
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    int key[3][3], plain[3], cipher[3];
+    char text[100];
+    int i, j;
+
+    printf("Enter the 3x3 key matrix (9 integers):\n");
+    for(i = 0; i < 3; i++)
+        for(j = 0; j < 3; j++)
+            scanf("%d", &key[i][j]);
+
+    printf("Enter plaintext (3 letters): ");
+    scanf("%s", text);
+
+    // Convert plaintext to numbers (A=0, B=1, ..., Z=25)
+    for(i = 0; i < 3; i++)
+        plain[i] = text[i] - 'A';
+
+    // Encryption
+    for(i = 0; i < 3; i++)
+    {
+        cipher[i] = 0;
+        for(j = 0; j < 3; j++)
+            cipher[i] += key[i][j] * plain[j];
+
+        cipher[i] = cipher[i] % 26;
+    }
+
+    printf("Cipher Text: ");
+    for(i = 0; i < 3; i++)
+        printf("%c", cipher[i] + 'A');
+
+    printf("\n");
+
+    return 0;
+}
+```
 
 ## OUTPUT
+<img width="1702" height="691" alt="Screenshot 2026-10-28 090351" src="https://github.com/user-attachments/assets/6ce47233-67fb-4bcd-a638-34c4d7e37878" />
+
+
 
 ## RESULT
+The hill cipher substitution techniques is successfully implemented.
+
